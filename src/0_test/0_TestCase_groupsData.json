@@ -1,0 +1,292 @@
+[
+  {
+    "groupKnows": {
+      "genderId": "women._id"
+    },
+    "groups": [
+      {
+        "membersData": [
+          {
+            "memberKnows": {
+              "genderId": "women._id",
+              "groupId": ""
+            },
+            "members": [
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "women_loona_chuu_000.jpg",
+                        "imageUrl": "women_loona_chuu_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_loona_chuu_001.jpg",
+                        "imageUrl": "women_loona_chuu_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_loona_chuu_002.jpg",
+                        "imageUrl": "women_loona_chuu_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_loona_chuu_003.jpg",
+                        "imageUrl": "women_loona_chuu_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "chuu"
+              },
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "women_loona_oliviaHye_000.jpg",
+                        "imageUrl": "women_loona_oliviaHye_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_loona_oliviaHye_001.jpg",
+                        "imageUrl": "women_loona_oliviaHye_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_loona_oliviaHye_002.jpg",
+                        "imageUrl": "women_loona_oliviaHye_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_loona_oliviaHye_003.jpg",
+                        "imageUrl": "women_loona_oliviaHye_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "oliviaHye"
+              }
+            ]
+          }
+        ],
+        "groupName": "loona"
+      },
+      {
+        "membersData": [
+          {
+            "memberKnows": {
+              "genderId": "women._id",
+              "groupId": ""
+            },
+            "members": [
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "women_giDle_soyeon_000.jpg",
+                        "imageUrl": "women_giDle_soyeon_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_giDle_soyeon_001.jpg",
+                        "imageUrl": "women_giDle_soyeon_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_giDle_soyeon_002.jpg",
+                        "imageUrl": "women_giDle_soyeon_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_giDle_soyeon_003.jpg",
+                        "imageUrl": "women_giDle_soyeon_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "soyeon"
+              },
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "women_giDle_soojin_000.jpg",
+                        "imageUrl": "women_giDle_soojin_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_giDle_soojin_001.jpg",
+                        "imageUrl": "women_giDle_soojin_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_giDle_soojin_002.jpg",
+                        "imageUrl": "women_giDle_soojin_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "women_giDle_soojin_003.jpg",
+                        "imageUrl": "women_giDle_soojin_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "soojin"
+              }
+            ]
+          }
+        ],
+        "groupName": "giDle"
+      }
+    ]
+  },
+  {
+    "groupKnows": {
+      "genderId": "men._id"
+    },
+    "groups": [
+      {
+        "membersData": [
+          {
+            "memberKnows": {
+              "genderId": "men._id",
+              "groupId": ""
+            },
+            "members": [
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "men_seventeen_sCoups_000.jpg",
+                        "imageUrl": "men_seventeen_sCoups_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_seventeen_sCoups_001.jpg",
+                        "imageUrl": "men_seventeen_sCoups_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_seventeen_sCoups_002.jpg",
+                        "imageUrl": "men_seventeen_sCoups_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_seventeen_sCoups_003.jpg",
+                        "imageUrl": "men_seventeen_sCoups_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "sCoups"
+              },
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "men_seventeen_dk_000.jpg",
+                        "imageUrl": "men_seventeen_dk_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_seventeen_dk_001.jpg",
+                        "imageUrl": "men_seventeen_dk_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_seventeen_dk_002.jpg",
+                        "imageUrl": "men_seventeen_dk_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_seventeen_dk_003.jpg",
+                        "imageUrl": "men_seventeen_dk_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "dk"
+              }
+            ]
+          }
+        ],
+        "groupName": "seventeen"
+      },
+      {
+        "membersData": [
+          {
+            "memberKnows": {
+              "genderId": "men._id",
+              "groupId": ""
+            },
+            "members": [
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "men_astro_chaEunwoo_000.jpg",
+                        "imageUrl": "men_astro_chaEunwoo_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_astro_chaEunwoo_001.jpg",
+                        "imageUrl": "men_astro_chaEunwoo_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_astro_chaEunwoo_002.jpg",
+                        "imageUrl": "men_astro_chaEunwoo_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_astro_chaEunwoo_003.jpg",
+                        "imageUrl": "men_astro_chaEunwoo_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "chaEunwoo"
+              },
+              {
+                "imagesData": [
+                  {
+                    "imageKnows": {
+                      "memberId": ""
+                    },
+                    "images": [
+                      {
+                        "imageName": "men_astro_moonBin_000.jpg",
+                        "imageUrl": "men_astro_moonBin_000.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_astro_moonBin_001.jpg",
+                        "imageUrl": "men_astro_moonBin_001.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_astro_moonBin_002.jpg",
+                        "imageUrl": "men_astro_moonBin_002.jpg_HASH_URL"
+                      },
+                      {
+                        "imageName": "men_astro_moonBin_003.jpg",
+                        "imageUrl": "men_astro_moonBin_003.jpg_HASH_URL"
+                      }
+                    ]
+                  }
+                ],
+                "memberName": "moonBin"
+              }
+            ]
+          }
+        ],
+        "groupName": "astro"
+      }
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "genderId": "women._id",
+    "name": "blackpink"
+  },
+  {
+    "genderId": "women._id",
+    "name": "twice"
+  },
+  {
+    "genderId": "women._id",
+    "name": "loona"
+  },
+  {
+    "genderId": "women._id",
+    "name": "giDle"
+  },
+  {
+    "genderId": "men._id",
+    "name": "bts" 
+  },
+  {
+    "genderId": "men._id",
+    "name": "exo" 
+  },
+  {
+    "genderId": "men._id",
+    "name": "seventeen" 
+  },
+  {
+    "genderId": "men._id",
+    "name": "astro" 
+  }
+]

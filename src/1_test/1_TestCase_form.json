@@ -1,0 +1,13 @@
+{
+  "isCreated": {
+    "gender": true,
+    "group": true,
+    "member": true
+  },
+  "data": {
+    "gender": ["gendersData"],
+    "group": ["groupsData"],
+    "member": ["membersData"],
+    "image": ["imagesData"]
+  }
+}
