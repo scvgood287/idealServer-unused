@@ -369,9 +369,9 @@ exports.uploadLog = async (ctx) => {
 
 exports.getCollections = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
-  const { body } = ctx.request;
+  const targetModel = ['gender', 'group', 'member'];
 
-  const targetDocs = body.map(async (e) => (await findDoc(modelList[e].model)));
+  const targetDocs = targetModel.map(async (e) => (await findDoc(modelList[e].model)));
   const results = await promiseAll(targetDocs);
 
   ctx.body = results;
@@ -379,11 +379,10 @@ exports.getCollections = async (ctx) => {
 
 exports.createDocuments = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
-  const { targetCollection } = ctx.params;
-  const { body } = ctx.request;
+  const [targetCollection, data] = ctx.request.body;
 
   const { model } = modelList[targetCollection];
-  const targetDocs = body.map(async (e) => (await createDoc(model, e)));
+  const targetDocs = data.map(async (e) => (await createDoc(model, e)));
   const results = await promiseAll(targetDocs);
 
   ctx.body = results;

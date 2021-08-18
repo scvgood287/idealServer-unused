@@ -1,11 +1,14 @@
 [
-  {
-      "name": "men"
-  },
-  {
-      "name": "women"
-  },
-  {
-      "name": "mixed"
-  }
+  "gender",
+  [
+    {
+        "name": "men"
+    },
+    {
+        "name": "women"
+    },
+    {
+        "name": "mixed"
+    }
+  ]
 ]
