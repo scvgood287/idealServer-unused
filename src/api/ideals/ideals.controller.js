@@ -371,7 +371,12 @@ exports.getCollections = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   const targetModel = ['gender', 'group', 'member'];
 
-  const targetDocs = targetModel.map(async (e) => (await findDoc(modelList[e].model)));
+  const targetDocs = targetModel.map(async (e) => {
+    const targetDoc = await findDoc(modelList[e].model);
+    let temp = {};
+    temp[e] = targetDoc;
+    return temp;
+  });
   const results = await promiseAll(targetDocs);
 
   ctx.body = results;
