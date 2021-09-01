@@ -31,7 +31,7 @@ const modelList = {
   },
   groupImage: {
     model: GroupImage,
-    schema: ({ groupId, imageUrl, name }) => ({ groupId, imageUrl, name, }),
+    schema: ({ groupId, imageUrl, name }) => ({ groupId, imageUrl, name }),
   },
   groupImageRate: {
     model: GroupImageRate,
@@ -53,7 +53,7 @@ const modelList = {
   },
   memberImage: {
     model: MemberImage,
-    schema: ({ memberId, imageUrl, name }) => ({ memberId, imageUrl, name, }),
+    schema: ({ memberId, imageUrl, name }) => ({ memberId, imageUrl, name }),
   },
   memberImageRate: {
     model: MemberImageRate,
@@ -369,7 +369,8 @@ exports.uploadLog = async (ctx) => {
 
 exports.getCollections = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
-  const targetModel = ['gender', 'group', 'member'];
+  const targetModel = ['gender', 'group', 'member', 'memberImage', 'memberImageRate'];
+  // const targetModel = Object.keys(modelList).map(model => model);
 
   const targetDocs = targetModel.map(async (e) => {
     const targetDoc = await findDoc(modelList[e].model);
