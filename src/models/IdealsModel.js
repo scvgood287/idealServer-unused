@@ -53,7 +53,7 @@ const Member = model('Member', MemberSchema);
 // MemberImage
 const MemberImageSchema = new Schema({
   memberId: { type: ObjectId, ref: 'Member', required: true, },
-  imageUrl: { type: String, required: true, },
+  imageUrl: { type: String, unique: true, required: true, },
   name: { type: String, unique: true, required: true },
 });
 const MemberImage = model('MemberImage', MemberImageSchema);

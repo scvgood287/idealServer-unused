@@ -18,7 +18,6 @@ const createDoc = async (model, schema) => {
   await temp.save();
   return temp;
 }
-const promiseAll = (promise) => (Promise.all(promise));
 // schema props 필요 없는 듯....
 const modelList = {
   gender: {
@@ -369,18 +368,18 @@ exports.uploadLog = async (ctx) => {
 
 exports.getCollections = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
-  const targetModel = ['gender', 'group', 'member', 'memberImage', 'memberImageRate'];
-  // const targetModel = Object.keys(modelList).map(model => model);
+  const targetModel = Object.keys(modelList);
+  console.log(targetModel);
 
-  const targetDocs = targetModel.map(async (e) => {
+  let targetDocs = {};
+  await Promise.all(targetModel.map(async (e) => {
     const targetDoc = await findDoc(modelList[e].model);
-    let temp = {};
-    temp[e] = targetDoc;
-    return temp;
-  });
-  const results = await promiseAll(targetDocs);
+    console.log(targetDoc);
+    targetDocs[e] = targetDoc;
+  }));
+  console.log(targetDocs);
 
-  ctx.body = results;
+  ctx.body = targetDocs;
 };
 
 exports.createDocuments = async (ctx) => {
@@ -389,7 +388,7 @@ exports.createDocuments = async (ctx) => {
 
   const { model } = modelList[targetCollection];
   const targetDocs = data.map(async (e) => (await createDoc(model, e)));
-  const results = await promiseAll(targetDocs);
+  const results = await Promise.all(targetDocs);
 
   ctx.body = results;
 };
