@@ -369,15 +369,13 @@ exports.uploadLog = async (ctx) => {
 exports.getCollections = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   const targetModel = Object.keys(modelList);
-  console.log(targetModel);
 
   let targetDocs = {};
   await Promise.all(targetModel.map(async (e) => {
     const targetDoc = await findDoc(modelList[e].model);
-    console.log(targetDoc);
+
     targetDocs[e] = targetDoc;
   }));
-  console.log(targetDocs);
 
   ctx.body = targetDocs;
 };
