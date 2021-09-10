@@ -414,12 +414,12 @@ exports.getRates = async (ctx) => {
     }));
 
     // 정렬 후 requestLength 만큼 slice.
-    // const ratedByFirstRate = quickSortAndSlice(requestLength, "firstRate", [...targetImageRates]);
-    // const ratedByWinRate = quickSortAndSlice(requestLength, "winRate", [...targetImageRates]);
+    const ratedByFirstRate = quickSortAndSlice(requestLength, "firstRate", [...targetImageRates]);
+    const ratedByWinRate = quickSortAndSlice(requestLength, "winRate", [...targetImageRates]);
 
     // requestLength 만큼의 상위 데이터 추출
-    const ratedByFirstRate = selectionSort(requestLength, "firstRate", [...targetImageRates]);
-    const ratedByWinRate = selectionSort(requestLength, "winRate", [...targetImageRates]);
+    // const ratedByFirstRate = selectionSort(requestLength, "firstRate", [...targetImageRates]);
+    // const ratedByWinRate = selectionSort(requestLength, "winRate", [...targetImageRates]);
 
     ratedImageRates = { ratedByFirstRate, ratedByWinRate };
   } catch (e) {
