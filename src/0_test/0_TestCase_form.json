@@ -1,9 +1,0 @@
-{
-  "created": ["gender", "member"],
-  "data": {
-    "gender": ["gendersData"],
-    "group": ["groupsData"],
-    "member": ["membersData"],
-    "image": ["imagesData"]
-  }
-}
