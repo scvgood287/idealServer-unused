@@ -35,10 +35,10 @@ const GroupImageRate = model('GroupImageRate', GroupImageRateSchema);
 // GroupImageGameLog
 const GroupImageGameLogSchema = new Schema({
   groupImageRateId: { type: ObjectId, ref:'GroupImageRate', required: true, },
-  isFirst: { type: Number, min: 0, max: 1, required: true, },
-  isEntry: { type: Number, min: 0, max: 1, required: true, },
-  isWin: { type: Number, min: 0, required: true, },
-  isLose: { type: Number, min: 0, max: 1, required: true, },
+  first: { type: Number, min: 0, max: 1, required: true, },
+  entry: { type: Number, min: 0, max: 1, required: true, },
+  win: { type: Number, min: 0, required: true, },
+  lose: { type: Number, min: 0, max: 1, required: true, },
 });
 const GroupImageGameLog = model('GroupImageGameLog', GroupImageGameLogSchema);
 
@@ -71,10 +71,10 @@ const MemberImageRate = model('MemberImageRate', MemberImageRateSchema);
 // MemberImageGameLog
 const MemberImageGameLogSchema = new Schema({
   memberImageRateId: { type: ObjectId, ref:'MemberImageRate', required: true, },
-  isFirst: { type: Number, min: 0, max: 1, required: true, },
-  isEntry: { type: Number, min: 0, max: 1, required: true, },
-  isWin: { type: Number, min: 0, required: true, },
-  isLose: { type: Number, min: 0, max: 1, required: true, },
+  first: { type: Number, min: 0, max: 1, required: true, },
+  entry: { type: Number, min: 0, max: 1, required: true, },
+  win: { type: Number, min: 0, required: true, },
+  lose: { type: Number, min: 0, max: 1, required: true, },
 });
 const MemberImageGameLog = model('MemberImageGameLog', MemberImageGameLogSchema);
 

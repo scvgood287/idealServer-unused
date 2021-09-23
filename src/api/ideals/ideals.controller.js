@@ -16,7 +16,7 @@ const postDoc = async (model, schema) => {
   const temp = await new model(schema);
   await temp.save();
   return temp;
-}
+};
 
 // 랜덤 아이디
 const makeIds = (v) => Array.from({ length: v }, (_, i) => i);
@@ -129,7 +129,8 @@ const models = {
 
 // 유저 클라
 
-// axios.get(/images/member || group/gender)
+// axios.get(/images/member || group/gender/howManyImages)
+// return imageUrl, imageRateId, group, member ? member || null;
 exports.getImages = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   const { imageType, genderType, howManyImages } = ctx.params;
@@ -286,11 +287,11 @@ exports.getRates = async (ctx) => {
   try {
     if ([imageType, `${imageType}Image`, `${imageType}ImageRate`].some(t => !models.hasOwnProperty(t))) {
       return ctx.throw(404,
-        "요청한 imageCollection 은 없는 imageCollection 입니다.",
+        "잘못된 imageType 입니다.",
         {
           "errors": [
             {
-              "imageCollection": imageType,
+              "imageType": imageType,
             }
           ]
         }
@@ -429,16 +430,95 @@ exports.getRates = async (ctx) => {
   ctx.body = ratedImageRates;
 };
 
+// axios.get(/thumbnail/:imageType/:genderType)
+// return [url, length];
+exports.getThumbnail = async (ctx) => {
+  ctx.set('Access-Control-Allow-Origin', '*');
+  const { imageType, genderType } = ctx.params;
+
+  try {
+    if ([imageType, `${imageType}Image`].some(t => !models.hasOwnProperty(t))) {
+      return ctx.throw(404,
+        "잘못된 imageType 입니다.",
+        {
+          "errors": [
+            {
+              "imageType": imageType,
+            }
+          ]
+        }
+      );
+    };
+
+    const targetModel = models[imageType].model;
+    const targetImageModel = models[`${imageType}Image`].model;
+    const TARGETID = `${imageType}Id`;
+
+    const genderDoc = await Gender.findOne({ name: genderType }, (err, genderData) => {
+      if (err) return ctx.throw(500, err);
+      if (!genderData) ctx.throw(404,
+        "존재하지 않는 성별 입니다.",
+        {
+          "errors": [
+            {
+              "genderType": genderType,
+            }
+          ]
+        }
+      );
+    });
+
+    const targetDocs =  await targetModel.find({ genderId: genderDoc._id }, (err, targetData) => {
+      if (err) return ctx.throw(500, err);
+      if (!targetData) ctx.throw(404,
+        `해당 성별에 부합하는 ${imageType} 이/가 없습니다`,
+        {
+          "errors": [
+            {
+              "genderType": gender,
+              "imageType": imageType,
+            }
+          ]
+        }
+      );
+    });
+
+    let filter = {};
+    filter[TARGETID] = targetDocs[Math.floor(Math.random() * targetDocs.length)]._id;
+    const targetImageDocs = await targetImageModel.find(filter, (err, targetImageData) => {
+      if (err) return ctx.throw(500, err);
+    });
+    if (targetImageDocs.length === 0) ctx.throw(404,
+      `해당 아이돌 / 그룹 의 이미지가 없습니다`,
+      {
+        "errors": [
+          {
+            "genderType": genderType,
+            "imageType": imageType,
+            "filter": filter,
+          }
+        ]
+      }
+    );
+
+    const thumbnailUrl = targetImageDocs[Math.floor(Math.random() * targetImageDocs.length)].imageUrl;
+
+    ctx.body = [thumbnailUrl, targetImageDocs.length];
+  } catch (error) { return ctx.throw(500, error); };
+};
+
 // 공용
 
-// axios.get("/collections")
+// axios.get("/collections/:option")
 exports.getCollections = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
-  const targetModel = Object.keys(models);
+  const { option } = ctx.params;
+  const targetModels = option === "all" ? Object.keys(models) : [option];
 
   let targetDocs = {};
-  await Promise.all(targetModel.map(async (e) => {
-    const targetDoc = await models[e].model.find();
+  await Promise.all(targetModels.map(async (e) => {
+    let targetDoc = await models[e].model.find();
+    if (targetDoc.length === 0) targetDoc = [];
 
     targetDocs[e] = targetDoc;
   }));
@@ -446,21 +526,22 @@ exports.getCollections = async (ctx) => {
   ctx.body = targetDocs;
 };
 
-// axios.post("/documents", body)
+// axios.post("/documents/:option", body)
 exports.postDocuments = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
-  const [targetCollection, data] = ctx.request.body;
+  const { option } = ctx.params;
+  const data = ctx.request.body;
 
   let results = [];
 
   try {
-    if (!models.hasOwnProperty(targetCollection)) {
+    if (!models.hasOwnProperty(option)) {
       return ctx.throw(404,
         "요청한 collection 은 없는 collection 입니다.",
         {
           "errors": [
             {
-              "targetCollection": targetCollection,
+              "targetCollection": option,
               "body": data,
             }
           ]
@@ -468,7 +549,7 @@ exports.postDocuments = async (ctx) => {
       );
     };
     
-    const targetModel = models[targetCollection].model;
+    const targetModel = models[option].model;
     const targetDocs = data.map(async (e) => (await postDoc(targetModel, e)));
     results = await Promise.all(targetDocs);
   } catch (error) { ctx.throw(500, e); };
