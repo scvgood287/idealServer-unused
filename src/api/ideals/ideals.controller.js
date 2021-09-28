@@ -275,13 +275,30 @@ exports.getImages = async (ctx) => {
     return ctx.throw(500, e);
   }
 
-  ctx.body = images;
+  ctx.body = {
+    images,
+    links: [
+      {
+        requestType: "get",
+        rel: "rates",
+        href: `/rates/${imageType}/${genderType}`,
+        need: "top"
+      },
+      {
+        requestType: "post",
+        rel: `documents`,
+        href: `/documents/${imageType}ImageGameLog`,
+        need: "body",
+        schema: `${imageType}ImageGameLog`
+      }
+    ]
+  };
 };
 
-// axios.get(/rates/:imageType/:genderType/:requestLength)
+// axios.get(/rates/:imageType/:genderType/:top)
 exports.getRates = async (ctx) => {
   ctx.set('Access-Control-Allow-Origin', '*');
-  const { imageType, genderType, requestLength } = ctx.params;
+  const { imageType, genderType, top } = ctx.params;
 
   let ratedImageRates = {};
   try {
@@ -415,8 +432,8 @@ exports.getRates = async (ctx) => {
     }));
 
     // 정렬 후 requestLength 만큼 slice.
-    const ratedByFirstRate = quickSortAndSlice(requestLength, "firstRate", [...targetImageRates]);
-    const ratedByWinRate = quickSortAndSlice(requestLength, "winRate", [...targetImageRates]);
+    const ratedByFirstRate = quickSortAndSlice(top, "firstRate", [...targetImageRates]);
+    const ratedByWinRate = quickSortAndSlice(top, "winRate", [...targetImageRates]);
 
     // requestLength 만큼의 상위 데이터 추출
     // const ratedByFirstRate = selectionSort(requestLength, "firstRate", [...targetImageRates]);
@@ -501,9 +518,20 @@ exports.getThumbnail = async (ctx) => {
       }
     );
 
-    const thumbnailUrl = targetImageDocs[Math.floor(Math.random() * targetImageDocs.length)].imageUrl;
+    const thumbnail = targetImageDocs[Math.floor(Math.random() * targetImageDocs.length)].imageUrl;
 
-    ctx.body = [thumbnailUrl, targetImageDocs.length];
+    ctx.body = {
+      thumbnail,
+      maximumRound: targetDocs.length,
+      links: [
+        {
+          requestType: "get",
+          rel: "images",
+          href: `/images/${imageType}/${genderType}`,
+          need: "howManyImages"
+        }
+      ]
+    }
   } catch (error) { return ctx.throw(500, error); };
 };
 
@@ -552,12 +580,7 @@ exports.postDocuments = async (ctx) => {
     const targetModel = models[option].model;
     const targetDocs = data.map(async (e) => (await postDoc(targetModel, e)));
     results = await Promise.all(targetDocs);
-  } catch (error) { ctx.throw(500, e); };
+  } catch (error) { ctx.throw(500, error); };
 
   ctx.body = results;
-};
-
-// 게임 결과 로그로 image의 rate update (업데이트 주기 고민)
-exports.update = async (ctx) => {
-  const { gameValue } = ctx.params;
 };

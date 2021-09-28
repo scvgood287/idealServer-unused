@@ -89,3 +89,49 @@ module.exports = {
   MemberImageRate,
   MemberImageGameLog
 };
+
+// exports = async function() {
+//   const DB = context.services.get("Cluster0").db("Cluster0");
+  
+//   const memberImageGameLogs = DB.collection("memberimagegamelogs");
+//   const groupImageGameLogs = DB.collection("groupimagegamelogs");
+  
+//   const memberImageRates = DB.collection("memberimagerates");
+//   const groupImageRates = DB.collection("groupimagerates");
+
+//   const assembledMemberLogs = await memberImageGameLogs.aggregate([
+//     {$group:
+//       {
+//         _id: "$memberImageRateId",
+//         first: { $sum: "$first" },
+//         entry: { $sum: "$entry" },
+//         win: { $sum: "$win" },
+//         lose: { $sum: "$lose" }
+//       }
+//     }
+//   ]);
+//   const assembledGroupLogs = await groupImageGameLogs.aggregate([
+//     {$group:
+//       {
+//         _id: "$groupImageRateId",
+//         first: { $sum: "$first" },
+//         entry: { $sum: "$entry" },
+//         win: { $sum: "$win" },
+//         lose: { $sum: "$lose" }
+//       }
+//     }
+//   ]);
+  
+//   const assembledMemberLogsArray = await assembledMemberLogs.toArray();
+//   const assembledGroupLogsArray = await assembledGroupLogs.toArray();
+  
+//   await Promise.all(assembledMemberLogsArray.map(async ({ _id, first, entry, win, lose }) => {
+//     await memberImageRates.updateOne({ _id }, { $inc: { first, entry, win, lose } });
+//   }));
+//   await Promise.all(assembledGroupLogsArray.map(async ({ _id, first, entry, win, lose }) => {
+//     await groupImageRates.updateOne({ _id }, { $inc: { first, entry, win, lose } });
+//   }));
+
+//   await memberImageGameLogs.deleteMany({});
+//   await groupImageGameLogs.deleteMany({});
+// };

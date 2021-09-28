@@ -5,7 +5,7 @@ const idealsCtrl = require('./ideals.controller');
 
 // 유저 클라
 ideals.get('/images/:imageType/:genderType/:howManyImages', idealsCtrl.getImages);
-ideals.get('/rates/:imageType/:genderType/:requestLength', idealsCtrl.getRates);
+ideals.get('/rates/:imageType/:genderType/:top', idealsCtrl.getRates);
 ideals.get('/thumbnail/:imageType/:genderType', idealsCtrl.getThumbnail);
 
 // 공용
