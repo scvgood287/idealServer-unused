@@ -500,29 +500,30 @@ exports.getThumbnail = async (ctx) => {
       );
     });
 
+    const isPlayable = await Promise.all(targetDocs.map(async ({ _id }) => {
+      let tempFilter = {};
+      tempFilter[TARGETID] = _id;
+
+      let tempTargetImageDocs = await targetImageModel.find(tempFilter, (err, targetImageData) => {
+        if (err) return ctx.throw(500, err);
+      });
+
+      return tempTargetImageDocs.length !== 0;
+    }));
+
+    const playableTargetDocs = targetDocs.filter((_doc, i) => isPlayable[i]);
+
     let filter = {};
-    filter[TARGETID] = targetDocs[Math.floor(Math.random() * targetDocs.length)]._id;
-    const targetImageDocs = await targetImageModel.find(filter, (err, targetImageData) => {
+    filter[TARGETID] = playableTargetDocs[Math.floor(Math.random() * playableTargetDocs.length)]._id;
+    let targetImageDocs = await targetImageModel.find(filter, (err, targetImageData) => {
       if (err) return ctx.throw(500, err);
     });
-    if (targetImageDocs.length === 0) ctx.throw(404,
-      `해당 아이돌 / 그룹 의 이미지가 없습니다`,
-      {
-        "errors": [
-          {
-            "genderType": genderType,
-            "imageType": imageType,
-            "filter": filter,
-          }
-        ]
-      }
-    );
 
     const thumbnail = targetImageDocs[Math.floor(Math.random() * targetImageDocs.length)].imageUrl;
 
     ctx.body = {
       thumbnail,
-      maximumRound: targetDocs.length,
+      maximumRound: playableTargetDocs.length,
       links: [
         {
           requestType: "get",
