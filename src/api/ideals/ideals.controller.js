@@ -500,18 +500,23 @@ exports.getThumbnail = async (ctx) => {
       );
     });
 
-    const isPlayable = await Promise.all(targetDocs.map(async ({ _id }) => {
-      let tempFilter = {};
-      tempFilter[TARGETID] = _id;
+    let isPlayable = [];
+    if (imageType === "group") {
+      await Promise.all(targetDocs.map(async ({ _id }, i) => {
+        let tempFilter = {};
+        tempFilter[TARGETID] = _id;
+  
+        let tempTargetImageDocs = await targetImageModel.findOne(tempFilter, (err, targetImageData) => {
+          if (err) return ctx.throw(500, err);
+        });
+  
+        isPlayable[i] = !!tempTargetImageDocs;
+      }));
+    };
+    console.log(isPlayable);
 
-      let tempTargetImageDocs = await targetImageModel.find(tempFilter, (err, targetImageData) => {
-        if (err) return ctx.throw(500, err);
-      });
-
-      return tempTargetImageDocs.length !== 0;
-    }));
-
-    const playableTargetDocs = targetDocs.filter((_doc, i) => isPlayable[i]);
+    const playableTargetDocs = imageType === "group" ? targetDocs.filter((_doc, i) => isPlayable[i]) : targetDocs;
+    console.log(playableTargetDocs);
 
     let filter = {};
     filter[TARGETID] = playableTargetDocs[Math.floor(Math.random() * playableTargetDocs.length)]._id;
@@ -519,10 +524,8 @@ exports.getThumbnail = async (ctx) => {
       if (err) return ctx.throw(500, err);
     });
 
-    const thumbnail = targetImageDocs[Math.floor(Math.random() * targetImageDocs.length)].imageUrl;
-
     ctx.body = {
-      thumbnail,
+      thumbnail: targetImageDocs[Math.floor(Math.random() * targetImageDocs.length)].imageUrl,
       maximumRound: playableTargetDocs.length,
       links: [
         {
