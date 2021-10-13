@@ -513,10 +513,8 @@ exports.getThumbnail = async (ctx) => {
         isPlayable[i] = !!tempTargetImageDocs;
       }));
     };
-    console.log(isPlayable);
 
     const playableTargetDocs = imageType === "group" ? targetDocs.filter((_doc, i) => isPlayable[i]) : targetDocs;
-    console.log(playableTargetDocs);
 
     let filter = {};
     filter[TARGETID] = playableTargetDocs[Math.floor(Math.random() * playableTargetDocs.length)]._id;
